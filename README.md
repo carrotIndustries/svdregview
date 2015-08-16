@@ -27,4 +27,3 @@ The MCU is accessed via OpenOCD's telnet interface.
  - no support for enumerated register fields (ST, please add enumerations to your SVD files and headers. Atmel does)
  - can't close openocd connection (have to exit svdregview before programming MCU)
  - only tested with STM32F4 series MCUs
-
