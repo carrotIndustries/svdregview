@@ -17,6 +17,9 @@ The MCU is accessed via OpenOCD's telnet interface.
  - start openocd
  - ./svd.py &lt;your-svd-file&gt;
 
+#How it looks like
+![screenshot](screenshot.png?raw=true)
+
 #Dependencies
  - python3
  - openocd
