@@ -144,13 +144,15 @@ for peripheral in  [node for node in peripheralsNode.getElementsByTagName("perip
 				writable = True
 			r=Register(name, display_name, description, address_offset, size, readable, writable, reset_value)
 			p.append_register(r)
-			for field in [node for node in register.getElementsByTagName("fields")[0].childNodes if node.nodeName=="field"] :
-				name         = [node for node in field.childNodes if node.nodeName=="name"][0].firstChild.nodeValue
-				description         = " ".join([node for node in field.childNodes if node.nodeName=="description"][0].firstChild.nodeValue.split())
-				offset         = int([node for node in field.childNodes if node.nodeName=="bitOffset"][0].firstChild.nodeValue, 0)
-				width         = int([node for node in field.childNodes if node.nodeName=="bitWidth"][0].firstChild.nodeValue, 0)
-				f=RegisterField(name, description, offset, width)
-				r.append_field(f)
+			fields = register.getElementsByTagName("fields")
+			if fields.length > 0:
+				for field in [node for node in fields[0].childNodes if node.nodeName=="field"] :
+					name         = [node for node in field.childNodes if node.nodeName=="name"][0].firstChild.nodeValue
+					description         = " ".join([node for node in field.childNodes if node.nodeName=="description"][0].firstChild.nodeValue.split())
+					offset         = int([node for node in field.childNodes if node.nodeName=="bitOffset"][0].firstChild.nodeValue, 0)
+					width         = int([node for node in field.childNodes if node.nodeName=="bitWidth"][0].firstChild.nodeValue, 0)
+					f=RegisterField(name, description, offset, width)
+					r.append_field(f)
 			#r.reset()
 		
 	else :
