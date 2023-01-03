@@ -84,7 +84,7 @@ class RegisterWidget (Gtk.Expander):
 		
 		Gtk.Expander.__init__(self)
 		self.connect("activate", self.expanded_handler)
-		self.set_label(register.name)
+		self.set_label(register.name + f" ({register.description})")
 		self.outerbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
 		self.outerbox.set_border_width(8)
 		self.box = Gtk.FlowBox()
@@ -108,6 +108,7 @@ class RegisterWidget (Gtk.Expander):
 		
 		self.autobox = Gtk.Box(spacing=4)
 		self.autoswitch = Gtk.Switch()
+		self.autoswitch.set_valign(Gtk.Align.CENTER)
 		self.autoswitch.connect("notify::active", self.auto_toggled)
 		self.autobox.pack_start(self.autoswitch, False, False,0)
 		self.autolabel = Gtk.Label("Auto write")
@@ -155,6 +156,7 @@ class RegisterFieldWidget (Gtk.Frame) :
 		self.field = field
 		self.field.bind(self.set_value)
 		Gtk.Frame.__init__(self, label="[{:d}:{:d}] {:s}".format(field.offset+field.width-1, field.offset, field.name))
+		self.set_tooltip_text(field.description)
 		self.set_shadow_type(Gtk.ShadowType.IN)
 		self.outerbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
 		self.outerbox.set_border_width(4)
