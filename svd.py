@@ -1,4 +1,6 @@
 #!/usr/bin/python
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GObject
 import xml.dom.minidom as dom
 import sys
